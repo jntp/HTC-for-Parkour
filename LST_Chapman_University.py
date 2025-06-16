@@ -15,17 +15,18 @@ st.markdown(
 )
 
 # Map Code
-with st.echo():
-  # Maptiler API Key
-  with open("global/key.txt") as file:
-    passkey = file.read() 
-    print(passkey) # test; remove later
-    os.environ["MAPTILER_KEY"] = passkey
+# with st.echo():
+  
+# Maptiler API Key
+with open("global/key.txt") as file:
+  passkey = file.read() 
+  os.environ["MAPTILER_KEY"] = passkey
 
-  # Get the LST raster file for Orange, CA
+  # Get the LST raster file (COG) for Orange, CA
   url = "https://drive.google.com/file/d/1yBrdkK1MOuvFCL0KismdfZmFr8QlViHU/view?usp=drive_link"
   filepath = "LC09_ST_Celsius_Orange.tif"
   LST_Orange = leafmap.download_file(url, filepath)
+  print(LST_Orange)
 
   # Map view bounds (longitude, latitude)
   bounds = [
@@ -38,7 +39,7 @@ with st.echo():
   m.add_raster(LST_Orange, colormap="magma", opacity=0.5, name="Surface Temperature") 
 
   # Get the Chapman University boundary geojson
-  url2 = "https://drive.google.com/file/d/1IfImbYAKVDFhmnWa1ADCh2cm_c3OPrMy/view?usp=sharing"
+  url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
   filepath2 = "ChapmanUniversity_pkBoundary"
   ChapmanUniversity_pkBoundary = leafmap.download_file(url2, filepath2)
 
@@ -61,8 +62,11 @@ with st.echo():
   pitch_text = "Hold right click to rotate map view."
   m.add_text(pitch_text, fontsize=16, bg_color="rgba(255, 255, 255, 0.6)", position="bottom-left") # half transparent bg_color
 
+  # Convert the map to Streamlit component
+  m.to_streamlit(width=1200, height=600) 
 
+# How to get the COG to display? 
 # Add more to the markdown section later
-# Left off at finding how to test this code! (see streamlit tutorial) 
+# How to make the fullscreen function work? 
 # Figure out how to display layer-interact, may need to add rows and cols
 
