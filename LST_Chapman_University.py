@@ -1,5 +1,6 @@
 import json
 import os
+import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
 
@@ -19,11 +20,15 @@ st.markdown(
   
 # Maptiler API Key
 with open("global/key.txt") as file:
+  # Load and use Maptiler key
   passkey = file.read() 
   os.environ["MAPTILER_KEY"] = passkey
 
+  # Use Titiler endpoint 
+  os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
+
   # Get the LST raster file (COG) for Orange, CA
-  url = "https://drive.google.com/file/d/1yBrdkK1MOuvFCL0KismdfZmFr8QlViHU/view?usp=drive_link"
+  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG.tif"
   filepath = "LC09_ST_Celsius_Orange.tif"
   LST_Orange = leafmap.download_file(url, filepath)
   print(LST_Orange)
@@ -36,7 +41,10 @@ with open("global/key.txt") as file:
 
   # Intialize map and add raster
   m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
-  m.add_raster(LST_Orange, colormap="magma", opacity=0.5, name="Surface Temperature") 
+  # m.add_raster(LST_Orange, colormap="magma", opacity=0.5, name="Surface Temperature") 
+  # Test add COG
+  print(lm.cog_tile(url)) 
+  m.add_cog_layer(url, name="Surface Temperature")
 
   # Get the Chapman University boundary geojson
   url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
@@ -65,7 +73,8 @@ with open("global/key.txt") as file:
   # Convert the map to Streamlit component
   m.to_streamlit(width=1200, height=600) 
 
-# How to get the COG to display? Check ipynb file 
+# How to get the COG to display? Check ipynb file
+# Try using COG viewer to preview raster... also may need to use the "traditional method" of adding COG
 # Add more to the markdown section later
 # How to make the fullscreen function work? 
 # Figure out how to display layer-interact, may need to add rows and cols
