@@ -28,7 +28,7 @@ with open("global/key.txt") as file:
   os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
   # Get the LST raster file (COG) for Orange, CA
-  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG.tif"
+  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG2.tif"
   filepath = "LC09_ST_Celsius_Orange.tif"
   LST_Orange = leafmap.download_file(url, filepath)
   print(LST_Orange)
@@ -44,7 +44,7 @@ with open("global/key.txt") as file:
   # m.add_raster(LST_Orange, colormap="magma", opacity=0.5, name="Surface Temperature") 
   # Test add COG
   print(lm.cog_tile(url)) 
-  m.add_cog_layer(url, name="Surface Temperature")
+  m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 
   # Get the Chapman University boundary geojson
   url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
@@ -73,8 +73,10 @@ with open("global/key.txt") as file:
   # Convert the map to Streamlit component
   m.to_streamlit(width=1200, height=600) 
 
-# How to get the COG to display? Check ipynb file
+# How to get the COG to display? Use new COG2 file (issue was with gdal_translate commands... use DeepSeek recommendation)
 # Try using COG viewer to preview raster... also may need to use the "traditional method" of adding COG
+# How to add a colormap to the COG layer?
+# Clean up and delete unnecessary code (see if there's a more efficient way to display geojson)
 # Add more to the markdown section later
 # How to make the fullscreen function work? 
 # Figure out how to display layer-interact, may need to add rows and cols
