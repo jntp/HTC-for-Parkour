@@ -1,8 +1,13 @@
 import json
 import os
+import rasterio
 import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
+import matplotlib.cm as cm
+from rio_tiler.colormap import cmap
+from rio_tiler.io import Reader
+
 
 st.set_page_config(layout="wide")
 
@@ -44,7 +49,50 @@ with open("global/key.txt") as file:
   # m.add_raster(LST_Orange, colormap="magma", opacity=0.5, name="Surface Temperature") 
   # Test add COG
   print(lm.cog_tile(url)) 
-  m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+  magma_cmap = cmap.get('magma') 
+
+  with Reader(url) as src:
+    img = src.tile(0, 0, 0)
+
+    # Rescale the data linearly from 0-10000 and 0-255
+    img.rescale(
+        in_range=((0, 10000),),
+        out_range=((0, 255),)
+    )
+
+    # Apply colormap and create a PNG buffer
+    buff = img.render(colormap=magma_cmap) # returns a buffer (PNG by default)
+ 
+  custom_cmap = {
+    "0": "#000000",
+    "1": "#008040",
+    "2": "#ff0000",
+    "3": "#ffff00",
+    "4": "#8000ff",
+    "5": "#8080ff",
+    "6": "#00ff00",
+    "7": "#c0c0c0",
+    "8": "#16002d",
+    "9": "#ff80ff",
+    "10": "#b3ffb3",
+    "11": "#ff8080",
+    "12": "#ffffbf",
+    "13": "#000080",
+    "14": "#808000",
+    "15": "#00ffff",
+  }
+
+  print(custom_cmap["0"])
+
+  magma_colormap = cm.get_cmap("magma", 256)
+  colors_dict = {
+      str(i): f"#{int(r*255):02x}{int(g*255):02x}{int(b*255):02x}"
+      for i, (r, g, b, _) in enumerate(magma_colormap.colors)
+  }
+
+  print(colors_dict["0"])
+
+  m.add_cog_layer(url, name="Surface Temperature", opacity=0.5, colormap="magma")
 
   # Get the Chapman University boundary geojson
   url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
@@ -73,6 +121,8 @@ with open("global/key.txt") as file:
   # Convert the map to Streamlit component
   m.to_streamlit(width=1200, height=600) 
 
+# Left off at trying to serialize JSON? Try using json.dumps()
+# Can you embed a colormap in a COG? Try that out
 # How to get the COG to display? Use new COG2 file (issue was with gdal_translate commands... use DeepSeek recommendation)
 # Try using COG viewer to preview raster... also may need to use the "traditional method" of adding COG
 # How to add a colormap to the COG layer?
