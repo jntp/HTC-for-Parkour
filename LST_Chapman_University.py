@@ -33,7 +33,7 @@ with open("global/key.txt") as file:
   os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
   # Get the LST raster file (COG) for Orange, CA
-  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG_magma.tif"
+  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG3.tif"
   # filepath = "LC09_ST_Celsius_Orange.tif"
   # LST_Orange = leafmap.download_file(url, filepath)
   # print(LST_Orange)
