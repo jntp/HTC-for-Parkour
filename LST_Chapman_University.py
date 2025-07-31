@@ -33,7 +33,7 @@ with open("global/key.txt") as file:
   os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
   # Get the LST raster file (COG) for Orange, CA
-  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_COG3_magma.tif"
+  url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
   # filepath = "LC09_ST_Celsius_Orange.tif"
   # LST_Orange = leafmap.download_file(url, filepath)
   # print(LST_Orange)
@@ -50,18 +50,6 @@ with open("global/key.txt") as file:
   # Test add COG
   print(lm.cog_tile(url)) 
   magma_cmap = cmap.get('magma') 
-
-  with Reader(url) as src:
-    img = src.tile(0, 0, 0)
-
-    # Rescale the data linearly from 0-10000 and 0-255
-    img.rescale(
-        in_range=((0, 10000),),
-        out_range=((0, 255),)
-    )
-
-    # Apply colormap and create a PNG buffer
-    buff = img.render(colormap=magma_cmap) # returns a buffer (PNG by default)
  
   custom_cmap = {
     "0": "#000000",
@@ -93,7 +81,7 @@ with open("global/key.txt") as file:
   print(colors_dict["0"])
   print(lm.cog_bands(url))
 
-  m.add_cog_layer(url, name="Surface Temperature", opacity=0.5, colormap="magma")
+  m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 
   # Get the Chapman University boundary geojson
   url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
