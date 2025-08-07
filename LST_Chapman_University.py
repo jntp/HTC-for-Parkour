@@ -4,9 +4,6 @@ import rasterio
 import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
-import matplotlib.cm as cm
-from rio_tiler.colormap import cmap
-from rio_tiler.io import Reader
 
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
