@@ -25,10 +25,3 @@ fp = "data/magma_LST_colormap.txt"
 colors = apply_colormap(magma)
 
 create_txt_file(fp, colors, 32.76, 58.87)
-
-# Write to GDAL-compatible color table file
-# with open("data/magma_colormap.txt", "w") as f:
-  # for i, (r, g, b, _) in enumerate(colors):
-    # f.write(f"{i} {int(r*255)} {int(g*255)} {int(b*255)}\n")
-
-# Check code! RGBA array does not seem correct!
