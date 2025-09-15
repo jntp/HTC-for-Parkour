@@ -1,8 +1,5 @@
 leafmap
 streamlit
-streamlit-keplergl
-geopandas
-localtileserver
 pydeck
 ipyleaflet
 ipywidgets
