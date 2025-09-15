@@ -1,5 +1,5 @@
 leafmap
-maplibre-gl
+py-maplibregl
 streamlit
 streamlit-keplergl
 geopandas
