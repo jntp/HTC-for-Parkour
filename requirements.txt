@@ -2,5 +2,5 @@ leafmap
 streamlit
 geopandas
 localtileserver
-kepler.gl
+keplergl
 pydeck
