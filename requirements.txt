@@ -1,3 +1,2 @@
 leafmap
-leafmap.maplibregl
 streamlit
