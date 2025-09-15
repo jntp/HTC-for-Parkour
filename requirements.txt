@@ -1,3 +1,6 @@
 leafmap
 streamlit
+geopandas
 localtileserver
+kepler.gl
+pydeck
