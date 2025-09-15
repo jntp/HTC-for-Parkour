@@ -1,2 +1,3 @@
 leafmap
+leafmap.maplibregl
 streamlit
