@@ -1,8 +1,10 @@
 leafmap
-maplibre
+maplibre-gl
 streamlit
 streamlit-keplergl
 geopandas
 localtileserver
 keplergl
 pydeck
+ipyleaflet
+ipywidgets
