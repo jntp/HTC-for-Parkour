@@ -1,6 +1,4 @@
-import json
 import os
-import rasterio
 import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
