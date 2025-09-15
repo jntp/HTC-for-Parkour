@@ -39,8 +39,7 @@ os.environ["MAPTILER_KEY"] = "ZqrhVFalxz86D81BGOGK"
 os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
 # Get the LST raster file (COG) for Orange, CA
-# url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
-url = "data/LC09_ST_Celsius_Orange_magma.tif" 
+url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
