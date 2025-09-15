@@ -1,7 +1,9 @@
 leafmap
+maplibre
 streamlit
 streamlit-keplergl
 geopandas
 localtileserver
 keplergl
+deckgl
 pydeck
