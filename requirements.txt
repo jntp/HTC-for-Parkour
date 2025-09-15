@@ -1,5 +1,4 @@
 leafmap
 streamlit
 pydeck
-ipyleaflets
 ipywidgets
