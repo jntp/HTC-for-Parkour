@@ -51,7 +51,7 @@ bounds = [
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
 
 # Add COG
-m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+# m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 print(lm.cog_tile(url))  
 print(lm.cog_bands(url))
 
