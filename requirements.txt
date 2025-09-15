@@ -1,5 +1,6 @@
 leafmap
 streamlit
+streamlit-keplergl
 geopandas
 localtileserver
 keplergl
