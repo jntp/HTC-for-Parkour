@@ -33,7 +33,7 @@ st.info("Note: Buildings heights are displayed in meters (m).")
 # with open("global/key.txt") as file:
   # Load and use Maptiler key
 #  passkey = file.read() 
-os.environ["MAPTILER_KEY"] = "ZqrhVFalxz86D81BGOGK"
+# os.environ["MAPTILER_KEY"] = "ZqrhVFalxz86D81BGOGK"
 
 # Use Titiler endpoint 
 os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
@@ -51,7 +51,7 @@ bounds = [
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
 
 # Add COG
-# m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 print(lm.cog_tile(url))  
 print(lm.cog_bands(url))
 
