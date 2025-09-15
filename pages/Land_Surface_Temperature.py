@@ -8,20 +8,28 @@ import streamlit as st
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
 
-st.sidebar.title("Justin's Web Maps")
+st.sidebar.title("About")
 
 st.sidebar.info(
     """
-    - A collection of web maps that Justin made :) (revise later)
+    ***Justin's Mapping Corner***
+
+    **Contact:**
+    - Justin Tang | jrtang@proton.me | [GitHub](https://github.com/jntp)
     """
 )
 
-st.title("Land Surface Temperature of Chapman University")
+st.title("🏜️")
+st.header("Land Surface Temperature of Chapman University") 
+
 st.markdown(
     """
-    A 3D interactive web map for visualizing the land surface temperature (°C) of Chapman University and the surrounding neighborhoods in Orange, CA
+    A 3D interactive web map for visualizing the land surface temperature (°C) of Chapman University and the surrounding neighborhoods in 
+    Orange, CA.
     """
 )
+
+st.info("Note: Buildings heights are displayed in meters (m).")
 
 ## Map Configurations
 with open("global/key.txt") as file:
@@ -63,6 +71,11 @@ with open("global/key.txt") as file:
 
   # Add layer control
   m.add_layer_control(bg_layers=True)
+
+  # Add colorbar
+  m.add_colorbar(
+    cmap="magma", vmin=32.9, vmax=58.9, label="Land Surface Temperature (°C)", position="bottom-right"
+  )
 
   # Add text
   pitch_text = "Hold right click to rotate map view."
