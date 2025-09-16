@@ -47,6 +47,8 @@ bounds = [
   [-117.7918, 33.8358],
 ]
 
+print(test)
+
 # Intialize map
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
 
