@@ -3,6 +3,7 @@ import requests
 import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
+from localtileserver import TileClient
 
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
@@ -52,8 +53,16 @@ bounds = [
 # Intialize map
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
 
+# Fetch the COG and serve it locally
+response_cog = requests.get(url)
+with open("temp_cog.tif", "wb") as f:
+    f.write(response_cog.content)
+
+client = TileClient("temp_cog.tif")
+m.add_tile_layer(client.get_tile_url(), name="COG Layer")
+
 # Add COG
-m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+# m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 print(lm.cog_tile(url))  
 print(lm.cog_bands(url))
 
