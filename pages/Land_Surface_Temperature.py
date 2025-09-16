@@ -40,7 +40,8 @@ os.environ["MAPTILER_KEY"] = "ZqrhVFalxz86D81BGOGK"
 os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
 # Get the LST raster file (COG) for Orange, CA
-url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+# url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
@@ -55,6 +56,14 @@ m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain")
 m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 print(lm.cog_tile(url))  
 print(lm.cog_bands(url))
+
+# response_cog = requests.get(url, allow_redirects=True)
+# final_url = response_cog.url
+# st.write(f"Final URL after redirects: {final_url}")
+
+# Check if the final URL has CORS
+# response_final = requests.head(final_url)
+# st.write(f"Final URL CORS: {response_final.headers.get('Access-Control-Allow-Origin')}")
 
 # Get the Chapman University boundary geojson
 # url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
