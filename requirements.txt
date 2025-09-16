@@ -2,3 +2,5 @@ leafmap
 streamlit
 pydeck
 ipywidgets
+localtileserver
+streamlit-geospatial
