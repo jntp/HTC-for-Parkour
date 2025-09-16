@@ -3,3 +3,6 @@ streamlit
 pydeck
 ipywidgets
 uvicorn
+requests
+rioxarray
+localtileserver
