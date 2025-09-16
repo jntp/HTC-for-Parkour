@@ -69,6 +69,21 @@ ChapmanUniversity_pkBoundary = response.json()
 paint = {"line-color": "#00baff", "line-width": 3}
 m.add_geojson(ChapmanUniversity_pkBoundary, layer_type="line", paint=paint, name="Chapman University")
 
+try:
+  response = requests.head(url)
+  st.write(f"URL status: {response.status_code}")
+  st.write(f"CORS headers: {response.headers.get('Access-Control-Allow-Origin')}")
+except Exception as e:
+  st.error(f"Error accessing URL: {e}")
+
+try:
+  response = requests.head(ChapmanBoundary_url)
+  st.write(f"URL status: {response.status_code}")
+  st.write(f"CORS headers: {response.headers.get('Access-Control-Allow-Origin')}")
+except Exception as e:
+  st.error(f"Error accessing URL: {e}")
+
+
 # Add 3D buildings
 m.add_overture_3d_buildings(values=[0, 6, 12, 18, 24], colors=['lightgray', 'gray', 'darkgray', 'royalblue', 'lightblue']) 
 
