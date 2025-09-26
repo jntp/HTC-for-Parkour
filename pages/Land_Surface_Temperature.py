@@ -53,6 +53,8 @@ bounds = [
 # Intialize map
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
 
+m.to_streamlit(width=1200, height=600)
+
 # Fetch the COG and serve it locally
 response_cog = requests.get(url)
 with open("temp_cog.tif", "wb") as f:
@@ -118,7 +120,7 @@ pitch_text = "Hold right click to rotate map view."
 m.add_text(pitch_text, fontsize=16, bg_color="rgba(255, 255, 255, 0.6)", position="bottom-left") # half transparent bg_color 
 
 # Convert the map to Streamlit component
-m.to_streamlit(width=1200, height=600)
+# m.to_streamlit(width=1200, height=600)
 
 
 # How to make the fullscreen function work? 
