@@ -6,4 +6,4 @@ uvicorn
 requests
 rioxarray
 localtileserver
-pkg_resources
+pmtiles
