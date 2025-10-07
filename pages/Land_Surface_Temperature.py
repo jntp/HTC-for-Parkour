@@ -43,7 +43,7 @@ os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 # Get the LST raster file (COG) for Orange, CA
 # url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
 # url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
-url = "https://opendata.digitalglobe.com/events/mauritius-oil-spill/2020-08-12/105001001F1B5B00/105001001F1B5B00.tif"
+url = "https://opendata.digitalglobe.com/events/california-fire-2020/pre-event/2018-02-16/pine-gulch-fire20/1030010076004E00.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
@@ -52,7 +52,8 @@ bounds = [
 ]
 
 # Intialize map
-m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
+# m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
+m = leafmap.Map(zoom=2, pitch=85, style="3d-terrain") 
 
 # Fetch the COG and serve it locally
 response_cog = requests.get(url)
@@ -64,8 +65,8 @@ with open("temp_cog.tif", "wb") as f:
 
 # Add COG
 m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
-# print(lm.cog_tile(url))  
-# print(lm.cog_bands(url))
+print(lm.cog_tile(url))  
+print(lm.cog_bands(url))
 
 # response_cog = requests.get(url, allow_redirects=True)
 # final_url = response_cog.url
