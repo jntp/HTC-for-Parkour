@@ -82,7 +82,7 @@ print(lm.cog_bands(url))
 # filepath2 = "ChapmanUniversity_pkBoundary"
 # ChapmanUniversity_pkBoundary = leafmap.download_file(url2, filepath2)
 
-ChapmanBoundary_url = cors_proxy + "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
+ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
 response = requests.get(ChapmanBoundary_url)
 ChapmanUniversity_pkBoundary = response.json()
 
