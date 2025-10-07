@@ -42,7 +42,8 @@ os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
 # Get the LST raster file (COG) for Orange, CA
 # url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
-url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+# url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+url = "https://opendata.digitalglobe.com/events/mauritius-oil-spill/2020-08-12/105001001F1B5B00/105001001F1B5B00.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
@@ -52,8 +53,6 @@ bounds = [
 
 # Intialize map
 m = leafmap.Map(zoom=2, pitch=85, max_bounds=bounds, style="3d-terrain") 
-
-m.to_streamlit(width=1200, height=600)
 
 # Fetch the COG and serve it locally
 response_cog = requests.get(url)
@@ -120,8 +119,7 @@ pitch_text = "Hold right click to rotate map view."
 m.add_text(pitch_text, fontsize=16, bg_color="rgba(255, 255, 255, 0.6)", position="bottom-left") # half transparent bg_color 
 
 # Convert the map to Streamlit component
-# m.to_streamlit(width=1200, height=600)
-
+m.to_streamlit(width=1200, height=600)
 
 # How to make the fullscreen function work? 
 # Figure out how to display layer-interact, may need to add rows and cols
