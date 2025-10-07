@@ -64,7 +64,7 @@ with open("temp_cog.tif", "wb") as f:
 # m.add_tile_layer(client.get_tile_url(), name="COG Layer")
 
 # Add COG
-m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+# m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
 print(lm.cog_tile(url))  
 print(lm.cog_bands(url))
 
