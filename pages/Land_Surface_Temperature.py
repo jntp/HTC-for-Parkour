@@ -40,12 +40,10 @@ os.environ["MAPTILER_KEY"] = "ZqrhVFalxz86D81BGOGK"
 # Use Titiler endpoint 
 os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 
-# Add CORS proxy prefix
-cors_proxy = "https://corsproxy.io/?"
-
 # Get the LST raster file (COG) for Orange, CA
 # url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
-url = cors_proxy + "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+# url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
+url = "https://justins-mapping-corner.streamlit.app/app/static/LC09_ST_Celsius_Orange_magma.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
@@ -82,7 +80,8 @@ print(lm.cog_bands(url))
 # filepath2 = "ChapmanUniversity_pkBoundary"
 # ChapmanUniversity_pkBoundary = leafmap.download_file(url2, filepath2)
 
-ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
+# ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
+ChapmanBoundary_url = "https://justins-mapping-corner.streamlit.app/app/static/ChapmanUniversity_pkBoundary_latlng.geojson"
 response = requests.get(ChapmanBoundary_url)
 ChapmanUniversity_pkBoundary = response.json()
 
@@ -125,3 +124,5 @@ m.to_streamlit(width=1200, height=600)
 
 # How to make the fullscreen function work? 
 # Figure out how to display layer-interact, may need to add rows and cols
+# Left off at removing cors proxy, try Streamlit static file serving:
+# https://docs.streamlit.io/develop/concepts/configuration/serving-static-files

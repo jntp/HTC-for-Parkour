@@ -2,3 +2,4 @@ global/key.txt
 .ipynb_checkpoints/
 test.py
 data/USGS_LPC_CA_ORANGECO_2011_000150.las
+app/
