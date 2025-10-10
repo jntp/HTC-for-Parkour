@@ -43,7 +43,7 @@ os.environ["TITILER_ENDPOINT"] = "https://titiler.xyz"
 # Get the LST raster file (COG) for Orange, CA
 # url = "https://github.com/jntp/HTC-for-Parkour/raw/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
 # url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/LC09_ST_Celsius_Orange_magma.tif"
-url = "./app/static/LC09_ST_Celsius_Orange_magma.tif"
+url = "https://./app/static/LC09_ST_Celsius_Orange_magma.tif"
 
 # Map view bounds (longitude, latitude)
 bounds = [
@@ -81,7 +81,7 @@ print(lm.cog_bands(url))
 # ChapmanUniversity_pkBoundary = leafmap.download_file(url2, filepath2)
 
 # ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
-ChapmanBoundary_url = "./app/static/ChapmanUniversity_pkBoundary_latlng.geojson"
+ChapmanBoundary_url = "https://./app/static/ChapmanUniversity_pkBoundary_latlng.geojson"
 response = requests.get(ChapmanBoundary_url)
 ChapmanUniversity_pkBoundary = response.json()
 
