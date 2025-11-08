@@ -3,7 +3,7 @@ import requests
 import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
-# from localtileserver import TileClient
+from rasterio.io import MemoryFile
 
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
@@ -63,31 +63,19 @@ with open("temp_cog.tif", "wb") as f:
 # m.add_tile_layer(client.get_tile_url(), name="COG Layer")
 
 # Add COG
-m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
-print(lm.cog_tile(url))  
-print(lm.cog_bands(url))
+# m.add_cog_layer(url, name="Surface Temperature", opacity=0.5)
+# print(lm.cog_tile(url))  
+# print(lm.cog_bands(url))
 
-# response_cog = requests.get(url, allow_redirects=True)
-# final_url = response_cog.url
-# st.write(f"Final URL after redirects: {final_url}")
-
-# Check if the final URL has CORS
-# response_final = requests.head(final_url)
-# st.write(f"Final URL CORS: {response_final.headers.get('Access-Control-Allow-Origin')}")
-
-# Get the Chapman University boundary geojson
-# url2 = "https://drive.google.com/file/d/154vW5LgvhO9aZ3zwDFr9x-5IiJkk5H_G/view?usp=drive_link"
-# filepath2 = "ChapmanUniversity_pkBoundary"
-# ChapmanUniversity_pkBoundary = leafmap.download_file(url2, filepath2)
+# TEST - New Code
+with MemoryFile(response_cog.content) as memfile:
+  with memfile.open() as LST_COG:
+    m.add_raster(LST_COG, name="Surface Temperature", opacity=0.5)
 
 # ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
 ChapmanBoundary_url = "https://jntp.github.io/jntp-pages/GeoJSON/ChapmanUniversity_pkBoundary_latlng.geojson"
 response = requests.get(ChapmanBoundary_url)
 ChapmanUniversity_pkBoundary = response.json()
-
-# Add Chapman University boundary geojson to map
-paint = {"line-color": "#00baff", "line-width": 3}
-m.add_geojson(ChapmanUniversity_pkBoundary, layer_type="line", paint=paint, name="Chapman University")
 
 try:
   response = requests.head(url)
@@ -103,6 +91,11 @@ try:
 except Exception as e:
   st.error(f"Error accessing URL: {e}")
 
+# Add Chapman University boundary geojson to map (TEST - New Code)
+with MemoryFile(response.content) as memfile2:
+  with memfile2.open() as boundary_geojson:
+    paint = {"line-color": "#00baff", "line-width": 3}
+    m.add_geojson(boundary_geojson, layer_type="line", paint=paint, name="Chapman University")
 
 # Add 3D buildings
 m.add_overture_3d_buildings(values=[0, 6, 12, 18, 24], colors=['lightgray', 'gray', 'darkgray', 'royalblue', 'lightblue']) 
