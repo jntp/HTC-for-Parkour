@@ -4,6 +4,7 @@ import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
 from rasterio.io import MemoryFile
+from localtileserver import TileClient
 
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
