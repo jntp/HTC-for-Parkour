@@ -8,3 +8,4 @@ rioxarray
 localtileserver
 pmtiles
 rasterio
+setuptools
