@@ -4,7 +4,7 @@ import leafmap as lm
 import leafmap.maplibregl as leafmap
 import streamlit as st
 from rasterio.io import MemoryFile
-from localtileserver import TileClient
+from localtileserver import TileClient, get_leaflet_tile_layer
 
 ## Streamlit App Configurations 
 st.set_page_config(layout="wide")
@@ -68,10 +68,10 @@ with open("temp_cog.tif", "wb") as f:
 # print(lm.cog_tile(url))  
 # print(lm.cog_bands(url))
 
-# TEST - New Code
-with MemoryFile(response_cog.content) as memfile:
-  with memfile.open() as LST_COG:
-    m.add_raster(LST_COG, name="Surface Temperature", opacity=0.5)
+# TEST Load COG using TileClient - New Code
+tile_client = TileClient(url)
+t = get_leaflet_tile_layer(tile_client, opacity=0.5, name="Surface Temperature")
+m.add_tile_layer(t, name="Surface Temperature")
 
 # ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
 ChapmanBoundary_url = "https://jntp.github.io/jntp-pages/GeoJSON/ChapmanUniversity_pkBoundary_latlng.geojson"
@@ -92,11 +92,20 @@ try:
 except Exception as e:
   st.error(f"Error accessing URL: {e}")
 
-# Add Chapman University boundary geojson to map (TEST - New Code)
-# with MemoryFile(response.content) as memfile2:
-  # with memfile2.open() as boundary_geojson:
 # paint = {"line-color": "#00baff", "line-width": 3}
 # m.add_geojson(ChapmanBoundary_url, layer_type="line", paint=paint, name="Chapman University")
+
+# Debug: Check if data loaded
+print("GeoJSON loaded:", "features" in ChapmanUniversity_pkBoundary)
+
+# Try adding as a source first
+m.add_source("chapman-source", {"type": "geojson", "data": ChapmanUniversity_pkBoundary})
+m.add_layer({
+    "id": "chapman-line",
+    "type": "line",
+    "source": "chapman-source",
+    "paint": {"line-color": "#00baff", "line-width": 3}
+})
 
 # Add 3D buildings
 m.add_overture_3d_buildings(values=[0, 6, 12, 18, 24], colors=['lightgray', 'gray', 'darkgray', 'royalblue', 'lightblue']) 
