@@ -120,3 +120,4 @@ m.to_streamlit(width=1200, height=600)
 # Figure out how to display layer-interact, may need to add rows and cols
 # Left off at removing cors proxy, try creating a GitHub Pages using a new repo:
 # https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+# Run Streamlit App again and work through new errors. Check Claude's answer as well.
