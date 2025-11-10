@@ -94,6 +94,7 @@ except Exception as e:
 
 # Add Chapman University boundary geojson to map (TEST - New Code)
 with MemoryFile(response.content) as memfile2:
+  st.write(f"Test memfile2: {memfile2}") 
   with memfile2.open() as boundary_geojson:
     paint = {"line-color": "#00baff", "line-width": 3}
     m.add_geojson(boundary_geojson, layer_type="line", paint=paint, name="Chapman University")
