@@ -71,7 +71,7 @@ with open("temp_cog.tif", "wb") as f:
 # TEST Load COG using TileClient - New Code
 tile_client = TileClient(url)
 t = get_leaflet_tile_layer(tile_client, opacity=0.5, name="Surface Temperature")
-m.add_tile_layer(t, name="Surface Temperature")
+m.add_tile_layer(url, name="Surface Temperature")
 
 # ChapmanBoundary_url = "https://raw.githubusercontent.com/jntp/HTC-for-Parkour/refs/heads/main/data/ChapmanUniversity_pkBoundary_latlng.geojson"
 ChapmanBoundary_url = "https://jntp.github.io/jntp-pages/GeoJSON/ChapmanUniversity_pkBoundary_latlng.geojson"
